@@ -1,10 +1,14 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"os"
 
 	"github.com/L0PE/gator/internal/config"
+	"github.com/L0PE/gator/internal/database"
+
+	_ "github.com/lib/pq"
 )
 
 
@@ -15,13 +19,22 @@ func main() {
 		return
 	}
 	
+	db, err := sql.Open("postgres", configStruct.DB_url)
+	if err != nil {
+		fmt.Printf("Could not connect to the database: %v\n", err)
+		os.Exit(1)
+	}
+	dbQueries := database.New(db)
+
 	s := state {
 		&configStruct,
+		dbQueries,
 	}
 
 	cmds := commands{
 		map[string]func(*state, command) error {
 			"login": handlerLogin,
+			"register": handlerRegister,
 		},
 	}
 	

@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"context"
+	"fmt"
+
+	"github.com/L0PE/gator/internal/database"
+)
 
 func handlerLogin(s *state, cmd command) error {
 	if len(cmd.args) < 1 {
@@ -8,8 +13,13 @@ func handlerLogin(s *state, cmd command) error {
 	}
 
 	username := cmd.args[0]
+	user, err := s.db.GetUser(context.Background(), username)
+	if user == (database.User{}){
+		return fmt.Errorf("User not found")
+	}
 
-	err := s.conf.SetUser(username)
+
+	err = s.conf.SetUser(username)
 	if err != nil {
 		return err	
 	}
