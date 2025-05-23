@@ -15,3 +15,7 @@ LIMIT 1;
 
 -- name: ResetUsers :exec
 TRUNCATE TABLE users;
+
+-- name: GetUsers :many
+SELECT id, created_at, updated_at, name 
+FROM users;
