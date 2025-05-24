@@ -15,7 +15,7 @@ func handlerAggragaion(s *state, cmd command) error {
 		return err
 	}
 
-	fmt.Printf("Fetched %v feeds\n", feeds)
+	fmt.Printf("Feeds: %+v\n", feeds)
 
 	return nil
 }
