@@ -32,13 +32,14 @@ func main() {
 	}
 
 	cmds := commands{
-		map[string]func(*state, command) error {
-			"login": handlerLogin,
-			"register": handlerRegister,
-			"reset": handlerReset,
-			"users": handlerList,
-		},
-	}
+		list: make(map[string]func(*state, command) error),
+	}	
+
+	cmds.register("login", handlerLogin)
+	cmds.register("register", handlerRegister)
+	cmds.register("reset", handlerReset)
+	cmds.register("users", handlerList)
+	cmds.register("agg", handlerAggragaion)
 	
 	if len(os.Args) < 2 {
 		fmt.Printf("Please provide at least two arguments\n")
