@@ -41,6 +41,7 @@ func main() {
 	cmds.register("users", handlerList)
 	cmds.register("agg", handlerAggragaion)
 	cmds.register("addfeed", handlerAddFeed)
+	cmds.register("feeds", handlerListFields)
 
 	if len(os.Args) < 2 {
 		fmt.Printf("Please provide at least two arguments\n")
