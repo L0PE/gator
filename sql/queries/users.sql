@@ -14,7 +14,7 @@ WHERE name = $1
 LIMIT 1;
 
 -- name: ResetUsers :exec
-TRUNCATE TABLE users;
+TRUNCATE TABLE users CASCADE;
 
 -- name: GetUsers :many
 SELECT id, created_at, updated_at, name 
