@@ -15,11 +15,6 @@ func handlerFollow(s *state, cmd command, user database.User) error {
 		return fmt.Errorf("Not enough arguments")
 	}
 
-	currentUser, err := s.db.GetUser(context.Background(), s.conf.Current_user_name);
-	if err != nil {
-		return err
-	}
-
 	url := cmd.args[0]
 	feed, err := s.db.GetFeedByUrl(context.Background(), url)
 	if err != nil {
@@ -36,7 +31,7 @@ func handlerFollow(s *state, cmd command, user database.User) error {
 			Time: time.Now().UTC(),
 			Valid: true,
 		},
-		UserID: currentUser.ID,
+		UserID: user.ID,
 		FeedID: feed.ID,
 	})
 	if err != nil {

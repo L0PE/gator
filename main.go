@@ -44,6 +44,7 @@ func main() {
 	cmds.register("feeds", handlerListFields)
 	cmds.register("follow", middlewareLoggedIn(handlerFollow))
 	cmds.register("following", handlerFollowings)
+	cmds.register("unfollow", middlewareLoggedIn(handlerUnfollow))
 
 	if len(os.Args) < 2 {
 		fmt.Printf("Please provide at least two arguments\n")
