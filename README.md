@@ -16,7 +16,7 @@ A command-line RSS feed aggregator and user manager written in Go.
 ## Setup
 1. **Clone the repository:**
    ```sh
-   git clone <repo-url>
+   git clone https://github.com/L0PE/gator.git
    cd gator
    ```
 2. **Install dependencies:**
